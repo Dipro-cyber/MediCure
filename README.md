@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# MediRoute — Smart Medicine Supply Chain
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Google Solution Challenge 2026 | Solving medicine shortages in rural Indian PHCs using AI
 
-## Available Scripts
+![MediRoute Dashboard](https://img.shields.io/badge/Google_Solution_Challenge-2026-4285F4?style=for-the-badge&logo=google)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase)
+![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?style=for-the-badge&logo=google)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## The Problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Over 25,000 Primary Health Centers (PHCs) in rural India face chronic medicine shortages. Stock management is done manually on paper registers, leading to:
+- Medicines running out before reorders are placed
+- Expiry wastage due to poor tracking
+- No visibility into consumption patterns or seasonal demand spikes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## The Solution
 
-### `npm test`
+MediRoute is an AI-powered supply chain management system that:
+- **Predicts stockouts** before they happen using Google Gemini AI
+- **Automates reorder suggestions** based on consumption trends and seasonal patterns
+- **Provides real-time visibility** across multiple PHC locations
+- **Assists PHC staff** via an AI chat assistant in simple language
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Dashboard** — Live stats, consumption trend charts, PHC network map, alerts
+- **Inventory Management** — Full CRUD with Firebase Firestore persistence
+- **AI Predictions** — Gemini 2.5 Flash analyzes stock and predicts stockouts with seasonal context
+- **Order Management** — Create orders, track status with timeline view
+- **Reports** — AI-generated narrative reports with charts
+- **Chat Assistant** — Gemini-powered assistant for PHC staff queries
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack
 
-### `npm run eject`
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 19, Tailwind CSS, Recharts |
+| Backend Proxy | Node.js + Express |
+| Database | Firebase Firestore |
+| AI | Google Gemini 2.5 Flash |
+| Hosting | Firebase Hosting |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
+- Node.js 18+
+- A Google Gemini API key from [aistudio.google.com](https://aistudio.google.com)
+- A Firebase project with Firestore enabled
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Installation
 
-## Learn More
+```bash
+git clone https://github.com/Dipro-cyber/MediCure.git
+cd MediCure
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Environment Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a `.env` file in the root:
 
-### Code Splitting
+```env
+REACT_APP_GEMINI_KEY=your_gemini_api_key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+```
 
-### Analyzing the Bundle Size
+### Running Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You need two terminals:
 
-### Making a Progressive Web App
+**Terminal 1 — React app:**
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Terminal 2 — Gemini proxy server:**
+```bash
+npm run server
+```
 
-### Advanced Configuration
+Open [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Google Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Google Gemini 2.5 Flash** — AI predictions, chat assistant, report generation
+- **Firebase Firestore** — Real-time database for medicine inventory
+- **Firebase Hosting** — Production deployment
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Team
+
+Built for **Google Solution Challenge 2026**
+
+---
+
+*MediRoute — Because no patient should suffer due to an empty medicine shelf.*
