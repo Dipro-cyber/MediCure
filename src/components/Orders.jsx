@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, X, Truck, CheckCircle, Clock, Package, ChevronRight } from "lucide-react";
+import { Plus, X, Truck, CheckCircle, Clock } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { sampleOrders, samplePHCs, sampleMedicines } from "../data/sampleData";
 import { ORDER_STATUS_COLORS, PRIORITY_COLORS } from "../utils/constants";

@@ -30,7 +30,7 @@ export const firebaseReady = !!db;
 
 // ─── Medicines ───────────────────────────────────────────────────────────────
 export async function fetchMedicines() {
-  if (!db) return null; // null = use sample data
+  if (!db) return null;
   const snap = await getDocs(collection(db, "medicines"));
   return snap.docs.map(d => ({ id: d.id, ...d.data() }));
 }
@@ -48,6 +48,19 @@ export async function updateMedicine(id, data) {
 export async function deleteMedicine(id) {
   if (!db) throw new Error("Firebase not configured");
   return deleteDoc(doc(db, "medicines", id));
+}
+
+export async function seedMedicinesIfEmpty(sampleMedicines) {
+  if (!db) return false;
+  const snap = await getDocs(collection(db, "medicines"));
+  if (!snap.empty) return false;
+  const batch = writeBatch(db);
+  sampleMedicines.forEach(m => {
+    const ref = doc(collection(db, "medicines"));
+    batch.set(ref, m);
+  });
+  await batch.commit();
+  return true;
 }
 
 // ─── Orders ──────────────────────────────────────────────────────────────────
@@ -70,18 +83,6 @@ export async function seedOrdersIfEmpty(sampleOrders) {
   sampleOrders.forEach(o => {
     const ref = doc(collection(db, "orders"));
     batch.set(ref, o);
-  });
-  await batch.commit();
-  return true;
-}
-  if (!db) return false;
-  const snap = await getDocs(collection(db, "medicines"));
-  if (!snap.empty) return false; // already seeded
-
-  const batch = writeBatch(db);
-  sampleMedicines.forEach(m => {
-    const ref = doc(collection(db, "medicines"));
-    batch.set(ref, m);
   });
   await batch.commit();
   return true;
