@@ -50,8 +50,30 @@ export async function deleteMedicine(id) {
   return deleteDoc(doc(db, "medicines", id));
 }
 
-// Seed Firestore with sample data on first run
-export async function seedMedicinesIfEmpty(sampleMedicines) {
+// ─── Orders ──────────────────────────────────────────────────────────────────
+export async function fetchOrders() {
+  if (!db) return null;
+  const snap = await getDocs(collection(db, "orders"));
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+
+export async function addOrder(data) {
+  if (!db) throw new Error("Firebase not configured");
+  return addDoc(collection(db, "orders"), data);
+}
+
+export async function seedOrdersIfEmpty(sampleOrders) {
+  if (!db) return false;
+  const snap = await getDocs(collection(db, "orders"));
+  if (!snap.empty) return false;
+  const batch = writeBatch(db);
+  sampleOrders.forEach(o => {
+    const ref = doc(collection(db, "orders"));
+    batch.set(ref, o);
+  });
+  await batch.commit();
+  return true;
+}
   if (!db) return false;
   const snap = await getDocs(collection(db, "medicines"));
   if (!snap.empty) return false; // already seeded

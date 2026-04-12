@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { sampleOrders, samplePHCs, sampleMedicines } from "../data/sampleData";
 import { ORDER_STATUS_COLORS, PRIORITY_COLORS } from "../utils/constants";
 import { formatDate, generateOrderId } from "../utils/helpers";
+import { fetchOrders, addOrder, seedOrdersIfEmpty, firebaseReady } from "../services/firebaseService";
 import toast from "react-hot-toast";
 
 const TIMELINE_STEPS = ["Order Placed", "Approved", "Dispatched", "In Transit", "Delivered"];
@@ -54,10 +55,28 @@ const emptyForm = { phcId: "phc1", medicines: [], priority: "Normal", expectedDe
 export default function Orders() {
   const location = useLocation();
   const [orders, setOrders]         = useState(sampleOrders);
+  const [usingFirebase, setUsingFirebase] = useState(false);
   const [showForm, setShowForm]     = useState(false);
   const [trackOrder, setTrackOrder] = useState(null);
   const [form, setForm]             = useState(emptyForm);
   const [medQty, setMedQty]         = useState({});
+
+  // Load orders from Firestore on mount
+  useEffect(() => {
+    if (!firebaseReady) return;
+    (async () => {
+      try {
+        await seedOrdersIfEmpty(sampleOrders);
+        const data = await fetchOrders();
+        if (data && data.length > 0) {
+          setOrders(data);
+          setUsingFirebase(true);
+        }
+      } catch (e) {
+        console.warn("Firestore orders load failed:", e.message);
+      }
+    })();
+  }, []);
 
   // Pre-fill form if navigated from Inventory reorder button
   useEffect(() => {
@@ -84,7 +103,7 @@ export default function Orders() {
     });
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!form.medicines.length) { toast.error("Select at least one medicine"); return; }
     const phc = samplePHCs.find(p => p.id === form.phcId);
     const newOrder = {
@@ -100,8 +119,17 @@ export default function Orders() {
       notes: form.notes,
       timeline: [new Date().toISOString().split("T")[0], null, null, null, null],
     };
-    setOrders(prev => [newOrder, ...prev]);
-    toast.success(`Order ${newOrder.id} created`);
+    try {
+      if (usingFirebase) {
+        const ref = await addOrder(newOrder);
+        setOrders(prev => [{ ...newOrder, id: ref.id }, ...prev]);
+      } else {
+        setOrders(prev => [newOrder, ...prev]);
+      }
+      toast.success(`Order ${newOrder.id} created`);
+    } catch (e) {
+      toast.error("Failed to save order: " + e.message);
+    }
     setShowForm(false);
     setForm(emptyForm);
     setMedQty({});
