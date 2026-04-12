@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, X, Truck, CheckCircle, Clock, Package, ChevronRight } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { sampleOrders, samplePHCs, sampleMedicines } from "../data/sampleData";
 import { ORDER_STATUS_COLORS, PRIORITY_COLORS } from "../utils/constants";
 import { formatDate, generateOrderId } from "../utils/helpers";
@@ -51,11 +52,25 @@ function TimelineModal({ order, onClose }) {
 const emptyForm = { phcId: "phc1", medicines: [], priority: "Normal", expectedDelivery: "", notes: "" };
 
 export default function Orders() {
+  const location = useLocation();
   const [orders, setOrders]         = useState(sampleOrders);
   const [showForm, setShowForm]     = useState(false);
   const [trackOrder, setTrackOrder] = useState(null);
   const [form, setForm]             = useState(emptyForm);
   const [medQty, setMedQty]         = useState({});
+
+  // Pre-fill form if navigated from Inventory reorder button
+  useEffect(() => {
+    const med = location.state?.reorderMedicine;
+    if (med) {
+      const qty = med.minimumStock * 2;
+      setForm(f => ({ ...f, medicines: [{ name: med.name, qty }] }));
+      setMedQty({ [med.name]: qty });
+      setShowForm(true);
+      // Clear state so back navigation doesn't re-open
+      window.history.replaceState({}, "");
+    }
+  }, [location.state]);
 
   function toggleMed(name) {
     setForm(f => {

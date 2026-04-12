@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Search, Plus, Edit2, RefreshCw, X, Filter, Package, Cloud, CloudOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { sampleMedicines } from "../data/sampleData";
 import { getStockStatus, formatDate, getDaysUntilExpiry, getRowBg } from "../utils/helpers";
 import { STATUS_COLORS, CATEGORIES } from "../utils/constants";
@@ -12,6 +13,7 @@ const emptyForm = {
 };
 
 export default function Inventory() {
+  const navigate = useNavigate();
   const [medicines, setMedicines] = useState(sampleMedicines);
   const [loading, setLoading]     = useState(firebaseReady);
   const [usingFirebase, setUsingFirebase] = useState(false);
@@ -85,7 +87,9 @@ export default function Inventory() {
   }
 
   function handleReorder(m) {
-    toast.success(`Reorder initiated for ${m.name}`);
+    // Navigate to Orders page with medicine pre-filled via URL state
+    navigate("/orders", { state: { reorderMedicine: m } });
+    toast.success(`Opening order form for ${m.name}`);
   }
 
   const expiryWarning = (date) => {

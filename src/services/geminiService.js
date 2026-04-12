@@ -1,7 +1,8 @@
-// Calls our local Express proxy (server.js) which forwards to Gemini
-// This avoids browser-level IP/quota restrictions on the free tier
-
-const PROXY_URL = "http://localhost:3001/api/gemini";
+// In production (Render), the proxy is on the same server.
+// In development, it runs on localhost:3001.
+const PROXY_URL = process.env.NODE_ENV === "production"
+  ? "/api/gemini"
+  : "http://localhost:3001/api/gemini";
 
 async function generate(prompt) {
   const res = await fetch(PROXY_URL, {
