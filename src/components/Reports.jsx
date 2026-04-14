@@ -50,9 +50,16 @@ export default function Reports() {
       const text = await generateReport(reportType, reportData);
       setNarrative(text);
       toast.success("Report generated");
-    } catch {
-      setNarrative(DEMO_NARRATIVE);
-      toast("Showing demo report (API key not set)", { icon: "ℹ️" });
+    } catch (err) {
+      console.error("Report generation error:", err);
+      // Only fall back to demo if proxy is unreachable
+      if (err.message?.includes("fetch") || err.message?.includes("Failed to fetch")) {
+        setNarrative(DEMO_NARRATIVE);
+        toast("Proxy server not running — showing demo report", { icon: "ℹ️" });
+      } else {
+        setNarrative(DEMO_NARRATIVE);
+        toast.error("AI error: " + err.message);
+      }
     } finally {
       setLoading(false);
     }

@@ -61,11 +61,13 @@ Reply in 3-5 sentences. Include Hindi terms when helpful.`;
 
 // ─── Report Generation ───────────────────────────────────────────────────────
 export async function generateReport(reportType, data) {
-  const prompt = `Write a 3-paragraph ${reportType} for Indian rural PHC network.
-Critical medicines: ${data.criticalMedicines?.join(", ")}.
-Expiring soon: ${data.expiringIn30Days?.join(", ")}.
-Order fulfillment: ${data.orderFulfillmentRate}.
-Professional tone for government health officials.`;
+  const prompt = `Write a professional 3-paragraph ${reportType} for a rural Indian PHC network.
+Date range: ${data.dateRange?.from} to ${data.dateRange?.to}.
+Total medicines tracked: ${data.totalMedicines}.
+Critical stock medicines: ${data.criticalMedicines?.join(", ")}.
+Medicines expiring in 30 days: ${data.expiringIn30Days?.join(", ") || "none"}.
+Total orders: ${data.totalOrders}. Order fulfillment rate: ${data.orderFulfillmentRate}.
+Write for government health officials. Include specific numbers. Be concise and actionable.`;
 
   return generate(prompt);
 }
