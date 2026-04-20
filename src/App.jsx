@@ -41,7 +41,7 @@ export default function App() {
                 <Menu className="w-5 h-5 text-gray-600" />
               </button>
               <div className="hidden sm:block">
-                <p className="text-xs text-gray-400">MediRoute — Smart Supply Chain</p>
+                <p className="text-xs text-gray-400">MediCure — Smart Supply Chain</p>
               </div>
             </div>
 

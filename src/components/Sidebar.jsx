@@ -41,7 +41,7 @@ export default function Sidebar({ open, onClose }) {
               <Activity className="w-5 h-5 text-[#1a73e8]" />
             </div>
             <div>
-              <h1 className="font-bold text-lg leading-tight">MediRoute</h1>
+              <h1 className="font-bold text-lg leading-tight">MediCure</h1>
               <p className="text-xs text-blue-200">Supply Chain AI</p>
             </div>
           </div>

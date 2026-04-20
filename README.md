@@ -1,8 +1,8 @@
-# MediRoute — Smart Medicine Supply Chain
+# MediCure — Smart Medicine Supply Chain
 
 > Google Solution Challenge 2026 | Solving medicine shortages in rural Indian PHCs using AI
 
-![MediRoute Dashboard](https://img.shields.io/badge/Google_Solution_Challenge-2026-4285F4?style=for-the-badge&logo=google)
+![MediCure Dashboard](https://img.shields.io/badge/Google_Solution_Challenge-2026-4285F4?style=for-the-badge&logo=google)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase)
 ![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?style=for-the-badge&logo=google)
@@ -18,7 +18,7 @@ Over 25,000 Primary Health Centers (PHCs) in rural India face chronic medicine s
 
 ## The Solution
 
-MediRoute is an AI-powered supply chain management system that:
+MediCure is an AI-powered supply chain management system that:
 - **Predicts stockouts** before they happen using Google Gemini AI
 - **Automates reorder suggestions** based on consumption trends and seasonal patterns
 - **Provides real-time visibility** across multiple PHC locations
@@ -111,4 +111,4 @@ Built for **Google Solution Challenge 2026**
 
 ---
 
-*MediRoute — Because no patient should suffer due to an empty medicine shelf.*
+*MediCure — Because no patient should suffer due to an empty medicine shelf.*

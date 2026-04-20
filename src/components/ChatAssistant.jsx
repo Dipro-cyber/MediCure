@@ -23,13 +23,13 @@ function getDemo(msg) {
   for (const [key, val] of Object.entries(DEMO_RESPONSES)) {
     if (lower.includes(key.split(" ")[0]) && lower.includes(key.split(" ")[1] || "")) return val;
   }
-  return "I'm MediRoute Assistant 🤖. I can help with inventory questions, medicine information, and reorder guidance. Please set your REACT_APP_GEMINI_KEY for full AI responses. Try asking about critical medicines or monsoon season stocks!";
+  return "I'm MediCure Assistant 🤖. I can help with inventory questions, medicine information, and reorder guidance. Please set your REACT_APP_GEMINI_KEY for full AI responses. Try asking about critical medicines or monsoon season stocks!";
 }
 
 export default function ChatAssistant({ initialMessage }) {
   const [open, setOpen]       = useState(false);
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "Namaste! 🙏 I'm MediRoute Assistant. I can help with medicine inventory, reorder guidance, and supply chain questions. How can I help you today?" }
+    { role: "assistant", content: "Namaste! 🙏 I'm MediCure Assistant. I can help with medicine inventory, reorder guidance, and supply chain questions. How can I help you today?" }
   ]);
   const [input, setInput]     = useState("");
   const [loading, setLoading] = useState(false);
@@ -92,7 +92,7 @@ export default function ChatAssistant({ initialMessage }) {
               <Bot className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-semibold text-sm">MediRoute Assistant</p>
+              <p className="font-semibold text-sm">MediCure Assistant</p>
               <p className="text-xs text-blue-200">Powered by Gemini AI</p>
             </div>
             <div className="ml-auto w-2 h-2 bg-green-400 rounded-full" />

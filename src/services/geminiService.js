@@ -51,7 +51,7 @@ export async function chatWithAssistant(messages, inventoryContext) {
   const critical = inventoryContext?.filter(m => m.status === "Critical" || m.status === "Low") || [];
   const lastMsg  = messages[messages.length - 1]?.content || "";
 
-  const prompt = `You are MediRoute Assistant for rural Indian PHC staff. Be concise and helpful.
+  const prompt = `You are MediCure Assistant for rural Indian PHC staff. Be concise and helpful.
 Critical medicines: ${critical.map(m => m.name).join(", ") || "none"}
 User asks: ${lastMsg}
 Reply in 3-5 sentences. Include Hindi terms when helpful.`;

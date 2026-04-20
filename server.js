@@ -42,6 +42,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(PORT, () => {
-  console.log(`MediRoute server running on port ${PORT}`);
+  console.log(`MediCure server running on port ${PORT}`);
   console.log(`Mode: ${process.env.NODE_ENV || "development"}`);
 });

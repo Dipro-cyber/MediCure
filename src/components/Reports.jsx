@@ -13,9 +13,9 @@ const REPORT_TYPES = [
   "Order History Report",
 ];
 
-const DEMO_NARRATIVE = `**Executive Summary — MediRoute PHC Network (April 2026)**
+const DEMO_NARRATIVE = `**Executive Summary — MediCure PHC Network (April 2026)**
 
-The MediRoute network currently tracks 18 medicines across 6 Primary Health Centers in Rajasthan, Uttar Pradesh, and Bihar. This report highlights critical supply chain concerns that require immediate attention from district health authorities.
+The MediCure network currently tracks 18 medicines across 6 Primary Health Centers in Rajasthan, Uttar Pradesh, and Bihar. This report highlights critical supply chain concerns that require immediate attention from district health authorities.
 
 **Critical Stock Situation:** Three medicines — Insulin Regular 40IU (8 vials), Chloroquine 250mg (12 tablets), and Paracetamol 500mg (45 tablets) — are critically below minimum thresholds. Insulin Regular poses the most urgent risk, with an estimated 3-day supply remaining for diabetic patients at PHC Sitamarhi and PHC Barmer. Emergency procurement is strongly recommended within 24 hours.
 

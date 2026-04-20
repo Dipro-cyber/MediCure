@@ -14,7 +14,7 @@ export default function Settings() {
     <div className="p-6 space-y-5 animate-fade-in">
       <div>
         <h2 className="text-2xl font-bold text-gray-800">Settings</h2>
-        <p className="text-sm text-gray-500">Configure MediRoute for your PHC network</p>
+        <p className="text-sm text-gray-500">Configure MediCure for your PHC network</p>
       </div>
 
       {/* API Config */}
@@ -63,7 +63,7 @@ export default function Settings() {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Info className="w-5 h-5 text-gray-400" />
-          <h3 className="font-semibold text-gray-800">About MediRoute</h3>
+          <h3 className="font-semibold text-gray-800">About MediCure</h3>
         </div>
         <div className="text-sm text-gray-500 space-y-1">
           <p>Version 1.0.0 — Google Solution Challenge 2026</p>
